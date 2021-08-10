@@ -9,7 +9,7 @@ const isAuthenticated = jwt({
 });
 
 
-// Function that extracts the JWT token from the request's 'Authorization' Headers
+// Function used to extract the JWT token from the request's 'Authorization' Headers
 function getTokenFromHeaders (req) {
   
   // Check if the token is available on the request Headers
