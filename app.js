@@ -16,10 +16,8 @@ app.use("/api", projectRouter);
 const taskRouter = require("./routes/task.routes");
 app.use("/api", taskRouter);
 
-
-const authRouter = require("./routes/auth.routes");          //  <== IMPORT
-app.use("/auth", authRouter);                             //  <== ADD
-
+const authRouter = require("./routes/auth.routes");
+app.use("/auth", authRouter);
 
 require("./error-handling")(app);
 
