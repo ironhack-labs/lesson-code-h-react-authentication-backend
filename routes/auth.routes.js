@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
 
+const { isAuthenticated } = require('./../middleware/jwt.middleware.js'); // <== IMPORT
+
 const router = express.Router();
 const saltRounds = 10;
 
@@ -117,7 +119,7 @@ router.post('/login', (req, res, next) => {
 
 
 // GET  /auth/verify  -  Used to verify JWT stored on the client
-router.get('/verify', isAuthenticated, (req, res, next) => {
+router.get('/verify', isAuthenticated, (req, res, next) => {        // <== CREATE NEW ROUTE
 
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and made available on `req.payload`
