@@ -9,7 +9,7 @@ const logger = require("morgan");
 // https://www.npmjs.com/package/cookie-parser
 const cookieParser = require("cookie-parser");
 
-const cors = require("cors"); // <== IMPORT
+const cors = require("cors");
 
 // Middleware configuration
 module.exports = (app) => {
