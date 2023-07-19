@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 
-const client = process.env.CLIENT_URL || "http://localhost:5005"
+const client = process.env.CLIENT_URL || "http://localhost:5173"
 
 // Middleware configuration
 module.exports = (app) => {
