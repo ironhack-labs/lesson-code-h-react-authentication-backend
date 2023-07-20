@@ -57,10 +57,17 @@ router.post('/signup', (req, res, next) => {
       const { email, name, _id } = createdUser;
     
       // Create a new object that doesn't expose the password
-      const user = { email, name, _id };
+      const payload = { email, name, _id };
+
+      // Create and sign the token
+      const authToken = jwt.sign( 
+        payload,
+        process.env.TOKEN_SECRET,
+        { algorithm: 'HS256', expiresIn: "6h" }
+      );
 
       // Send a json response containing the user object
-      res.status(201).json({ user: user });
+      res.status(201).json({ authToken: authToken });
     })
     .catch(err => {
       console.log(err);
