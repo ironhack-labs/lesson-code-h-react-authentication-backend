@@ -10,6 +10,10 @@ require("./config")(app);
 
 
 // 👇 Start handling routes here
+
+const dashboardRouter = require("./routes/dashboard.routes")
+app.use("/", dashboardRouter)
+
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);
 
