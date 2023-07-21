@@ -9,7 +9,7 @@ const router = express.Router();
 const saltRounds = 10;
 
 // POST /auth/therapist-signup - Creates a new therapist in the database
-  router.post('/therapist/signup', (req, res, next) => {
+  router.post('/signup', (req, res, next) => {
   const { email, password, name, location, price, languages, availability, approach } = req.body;
 
   // Check if email or password or name are provided as empty string 
@@ -75,7 +75,7 @@ const saltRounds = 10;
 
 
 // POST  /auth/login - Verifies email and password and returns a JWT
-router.post('/therapist/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
 
   // Check if email or password are provided as empty string 
@@ -124,7 +124,7 @@ router.post('/therapist/login', (req, res, next) => {
 
 
 // GET  /auth/verify  -  Used to verify JWT stored on the client
-router.get('/therapist/verify', isAuthenticated, (req, res, next) => {
+router.get('/verify', isAuthenticated, (req, res, next) => {
 
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and made available on `req.payload`
