@@ -11,7 +11,7 @@ const saltRounds = 10;
 // POST /auth/therapist-signup - Creates a new therapist in the database
   router.post('/signup', (req, res, next) => {
   const { email, password, name, location, price, languages, availability, approach } = req.body;
-
+console.log("hello", req.body);
   // Check if email or password or name are provided as empty string 
   if (email === '' || password === '' || name === '' || location === '' || price === '' || languages === '' || availability === '' || approach === '') {
     res.status(400).json({ message: "Please fill out all required fields" });

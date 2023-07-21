@@ -7,10 +7,11 @@ const therapistSchema = new Schema({
   name: { type: String, required: true },
   location: { type: String, required: true },
   price: { type: Number, required: true },
-  languages: { type: String, required: true },
-  style: { type: String, required: true },
-  specialization: { type: String, required: true },
-  appointments: { type: Schema.Types.ObjectId, ref: "Appointment" }
+  languages: [{ type: String, required: true }],
+  approach: [{ type: String, required: true }],
+  specialization: [{ type: String, required: true }],
+  availability: [{ type: String, required: true }],
+  appointments: [{ type: Schema.Types.ObjectId, ref: "Appointment" }]
 });
 
 module.exports = model("Therapist", therapistSchema);
