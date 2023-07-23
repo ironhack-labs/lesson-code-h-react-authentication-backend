@@ -49,7 +49,7 @@ router.put("/updateProfile", authenticateToken, async (req, res, next) => {
     const therapistId = req.user._id;
     console.log(req.body);
 
-    if (!mongoose.Types.ObjectId.isValid(therapisttId)) {
+    if (!mongoose.Types.ObjectId.isValid(therapistId)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
@@ -78,10 +78,10 @@ router.put("/updateProfile", authenticateToken, async (req, res, next) => {
 });
 
 // DELETE  /api/projects/:projectId  -  Deletes a specific project by id
-router.delete("/deleteTherapist", (req, res, next) => {
+router.delete("/deleteTherapist", authenticateToken, (req, res, next) => {
   const therapistId = req.user._id;
 
-  if (!mongoose.Types.ObjectId.isValid(therapisttId)) {
+  if (!mongoose.Types.ObjectId.isValid(therapistId)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
