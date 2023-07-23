@@ -29,6 +29,9 @@ app.use("/auth", userAuthRouter);
 const therapistAuthRouter = require("./routes/therapistAuth.routes");
 app.use("/therapist", therapistAuthRouter);
 
+const therapistRouter = require("./routes/therapist.routes");
+app.use("/therapist", isAuthenticated, therapistRouter)
+
 require("./error-handling")(app);
 
 module.exports = app;
