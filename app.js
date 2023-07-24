@@ -32,6 +32,9 @@ app.use("/therapist", therapistAuthRouter);
 const therapistRouter = require("./routes/therapist.routes");
 app.use("/therapist", isAuthenticated, therapistRouter)
 
+const GPTRouter = require("./routes/gpt.routes");
+app.use("/ai-therapist", GPTRouter);
+
 require("./error-handling")(app);
 
 module.exports = app;
