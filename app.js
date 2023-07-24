@@ -10,6 +10,10 @@ require("./config")(app);
 
 
 // 👇 Start handling routes here
+
+const dashboardRouter = require("./routes/dashboard.routes")
+app.use("/", dashboardRouter)
+
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);
 
@@ -19,8 +23,17 @@ app.use("/api", isAuthenticated, projectRouter);
 const taskRouter = require("./routes/task.routes");
 app.use("/api", isAuthenticated, taskRouter);
 
-const authRouter = require("./routes/auth.routes");
-app.use("/auth", authRouter);
+const userAuthRouter = require("./routes/userAuth.routes");
+app.use("/auth", userAuthRouter);
+
+const therapistAuthRouter = require("./routes/therapistAuth.routes");
+app.use("/therapist", therapistAuthRouter);
+
+const therapistRouter = require("./routes/therapist.routes");
+app.use("/therapist", isAuthenticated, therapistRouter)
+
+const GPTRouter = require("./routes/gpt.routes");
+app.use("/ai-therapist", GPTRouter);
 
 require("./error-handling")(app);
 
