@@ -7,7 +7,7 @@ const Therapist = require("../models/Therapist.model");
 
 const secretKey = process.env.TOKEN_SECRET;
 
-//  GET /api/therapist -  Retrieves a therapist
+
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -24,6 +24,13 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
+
+//GET - Retrieves a list of all therapists
+router.get("/therapists", authenticateToken, (req, res, next) => {
+  Therapist.find()
+  .then((allTherapists) => res.json(allTherapists))
+  .catch((err) => res.status(500).json({ error: "Server error" }))
+})
 
 // Route to get therapist information based on the authenticated request.
 router.get("/therapistInfo", authenticateToken, (req, res, next) => {
