@@ -29,8 +29,19 @@ function authenticateToken(req, res, next) {
 router.get("/therapists", authenticateToken, (req, res, next) => {
   Therapist.find()
   .then((allTherapists) => res.json(allTherapists))
+
   .catch((err) => res.status(500).json({ error: "Server error" }))
 })
+
+//GET - Retrieves specific therapist information for user using therapist ._id
+router.get("/:therapistId", authenticateToken, (req, res, next) => {
+  const therapistId = req.params.therapistId;
+  Therapist.findById(therapistId)
+  .then((therapist) => res.json(therapist))
+  .catch((err) => res.status(500).json({ error: "Server error" }))
+})
+
+
 
 // Route to get therapist information based on the authenticated request.
 router.get("/therapistInfo", authenticateToken, (req, res, next) => {
@@ -51,7 +62,7 @@ router.get("/therapistInfo", authenticateToken, (req, res, next) => {
 //PUT update therapist profile details
 router.put("/updateProfile", authenticateToken, async (req, res, next) => {
   try {
-    const { email, name, location, price, languages, availability, approach } = req.body;
+    const { email, name, introduction, location, price, languages, availability, approach } = req.body;
 
     const therapistId = req.user._id;
     console.log(req.body);
@@ -67,6 +78,7 @@ router.put("/updateProfile", authenticateToken, async (req, res, next) => {
       {
         email,
         name,
+        introduction,
         location,
         price,
         languages,

@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const therapistSchema = new Schema({
   email: { type: String, unique: true, required: true },
+  introduction: { type: String },
   password: { type: String, required: true },
   name: { type: String, required: true },
   location: { type: String, required: true },
